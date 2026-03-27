@@ -69,5 +69,5 @@ Designed to reflect real logistics workflows including retry handling and SLA tr
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/logistics-exception-app.git
-cd logistics-exception-app
+git clone https://github.com/YOUR_USERNAME/logistics-exception.git
+cd logistics-exception
