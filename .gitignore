@@ -4,4 +4,4 @@ node_modules
 dist
 .next
 drizzle
-api/node_modules
+
