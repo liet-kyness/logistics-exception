@@ -71,3 +71,9 @@ Designed to reflect real logistics workflows including retry handling and SLA tr
 ```bash
 git clone https://github.com/liet-kyness/logistics-exception.git
 cd logistics-exception
+
+cp web/env.example web/env.local
+
+docker compose up -d
+
+Navigate to http://localhost:3000

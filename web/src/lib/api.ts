@@ -1,9 +1,31 @@
 import type { ExceptionsResponse, ExceptionDetailResponse, OverviewMetric } from "./types";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3030';
+
+/* NOTE: Server (Docker) :: http://api:3030
+         Browser :: http://localhost:3030
+         Local Dev :: http://localhost:3030
+*/
+
+// Docker vs. Local helper
+export function getApiBaseUrl() {
+    const baseUrl = 
+        typeof window === 'undefined'
+            ? process.env.INTERNAL_API_BASE_URL
+            : process.env.NEXT_PUBLIC_API_BASE_URL;
+    if (!baseUrl) {
+        throw new Error(
+            `Missing API base URL. INTERNAL_API_BASE_URL="${process.env.INTERNAL_API_BASE_URL}", NEXT_PUBLIC_API_BASE_URL="${process.env.NEXT_PUBLIC_API_BASE_URL}."`
+        );
+    }
+    return baseUrl;
+}
+
+
 
 async function fetchJson<T>(path: string): Promise<T> {
-    const res = await fetch(`${API_BASE_URL}${path}`, {
+    const baseUrl = getApiBaseUrl();
+
+    const res = await fetch(`${baseUrl}${path}`, {
         cache: 'no-store',
     });
     if (!res.ok) {

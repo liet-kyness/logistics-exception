@@ -8,7 +8,8 @@ RUN npm install
 COPY . .
 
 RUN npm run db:generate
+RUN apt-get update && apt-get install -y netcat-openbsd
 
-EXPOSE 3001
+EXPOSE 3030
 
-CMD ["npm", "run", "dev"]
+CMD ["sh", "./docker-entrypoint.sh"]
